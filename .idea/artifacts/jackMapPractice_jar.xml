@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="jackMapPractice:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/jackMapPractice_jar</output-path>
+    <root id="archive" name="jackMapPractice.jar">
+      <element id="module-output" name="jackMapPractice" />
+    </root>
+  </artifact>
+</component>

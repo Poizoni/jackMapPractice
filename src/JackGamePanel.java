@@ -12,6 +12,9 @@ public class JackGamePanel extends JPanel implements Runnable {
 
     int noteY = 0;
 
+    // scroll speed
+    int yVelocity = 20;
+
     // note x positions
     final int LEFT = 0;
     final int MIDLEFT = 100;
@@ -39,6 +42,10 @@ public class JackGamePanel extends JPanel implements Runnable {
     final Color SCORE_COLOR = Color.white;
     final int SCORE_X = 170;
     final int SCORE_Y = 100;
+
+    final Font SPEED_FONT = new Font("Arial", Font.PLAIN, 20);
+    final int SPEED_X = 10;
+    final int SPEED_Y = 30;
 
     static final int GAME_WIDTH = 400;
     static final int GAME_HEIGHT = 600;
@@ -75,11 +82,11 @@ public class JackGamePanel extends JPanel implements Runnable {
     }
 
     public Note newNote(int x) {
-        return new Note(x, noteY, NOTE_WIDTH, NOTE_HEIGHT);
+        return new Note(x, noteY, NOTE_WIDTH, NOTE_HEIGHT, yVelocity);
     }
 
     public Note blankNote() {
-        return new Note(BLANK, noteY, NOTE_WIDTH, NOTE_HEIGHT);
+        return new Note(BLANK, noteY, NOTE_WIDTH, NOTE_HEIGHT, yVelocity);
     }
 
     public void checkScore() {
@@ -98,6 +105,18 @@ public class JackGamePanel extends JPanel implements Runnable {
                 shuffle();
                 note.y = 0;
             }
+        }
+    }
+
+    public void incScrollSpeed() {
+        if(yVelocity<50) {
+            yVelocity++;
+        }
+    }
+
+    public void decScrollSpeed() {
+        if(yVelocity>0) {
+            yVelocity--;
         }
     }
 
@@ -163,11 +182,11 @@ public class JackGamePanel extends JPanel implements Runnable {
             note.draw(g);
         }
 
-        // draw hitline
+        // hitline
         g.setColor(Color.white);
         g.drawLine(0,560,400,560);
 
-        // draw hit dots
+        // hit dots
         if(leftDot) {
             g.drawOval(20, DOT_Y, DOT_SIZE, DOT_SIZE);
             g.setColor(DOT_COLOR);
@@ -193,6 +212,10 @@ public class JackGamePanel extends JPanel implements Runnable {
         g.setColor(SCORE_COLOR);
         g.setFont(SCORE_FONT);
         g.drawString(String.valueOf(score), SCORE_X, SCORE_Y);
+
+        // speed (WIP)
+        g.setFont(SPEED_FONT);
+        g.drawString(String.valueOf(yVelocity), SPEED_X, SPEED_Y);
 
         // idk what this does but apparently its good
         Toolkit.getDefaultToolkit().sync();
@@ -245,6 +268,12 @@ public class JackGamePanel extends JPanel implements Runnable {
                         score++;
                         notes.set(NOTE_4, blankNote());
                 }
+            }
+            if(e.getKeyCode() == KeyEvent.VK_UP) {
+                incScrollSpeed();
+            }
+            if(e.getKeyCode() == KeyEvent.VK_DOWN) {
+                decScrollSpeed();
             }
         }
 

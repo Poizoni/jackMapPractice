@@ -81,6 +81,7 @@ public class JackGamePanel extends JPanel implements Runnable {
         notes.add(3, newNote(RIGHT));
     }
 
+
     public Note newNote(int x) {
         return new Note(x, noteY, NOTE_WIDTH, NOTE_HEIGHT, yVelocity);
     }
@@ -115,7 +116,7 @@ public class JackGamePanel extends JPanel implements Runnable {
     }
 
     public void decScrollSpeed() {
-        if(yVelocity>0) {
+        if(yVelocity>1) {
             yVelocity--;
         }
     }

@@ -12,8 +12,8 @@ public class JackGameFrame extends JFrame {
         this.setTitle("Jack Practice");
         this.setBackground(Color.black);
         this.setResizable(false);
-        this.setLocationRelativeTo(null);
         this.pack();
+        this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
 }

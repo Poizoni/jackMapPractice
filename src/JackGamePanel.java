@@ -55,6 +55,7 @@ public class JackGamePanel extends JPanel implements Runnable {
     final int yBottomHitPos = 570;
 
     int score = 0;
+    boolean pauseScreen = false;
 
     ArrayList<Note> notes = new ArrayList<>(4);
     Thread gameThread;
@@ -173,8 +174,10 @@ public class JackGamePanel extends JPanel implements Runnable {
     }
 
     public void move() {
-        for(Note note : notes) {
-            note.move();
+        if(!pauseScreen) {
+            for (Note note : notes) {
+                note.move();
+            }
         }
     }
 
@@ -275,6 +278,9 @@ public class JackGamePanel extends JPanel implements Runnable {
             }
             if(e.getKeyCode() == KeyEvent.VK_DOWN) {
                 decScrollSpeed();
+            }
+            if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                pauseScreen = !pauseScreen;
             }
         }
 

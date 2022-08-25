@@ -16,6 +16,9 @@ A,S,K,L
 INCREASE-DECREASE SCROLL SPEED:
 UP/DOWN ARROWS
 
+PAUSE:
+ESC
+
 Click when bottoms of notes are touching the line to increase your score
 (there is some leniency with hit area)
 
